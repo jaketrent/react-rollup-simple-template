@@ -9,18 +9,16 @@ export default {
   input: 'src/index.js',
   output: {
     file: 'dist/bundle.js',
-    format: 'umd',
-    sourcemap: true
+    format: 'cjs',
+    sourcemap: true,
   },
   plugins: [
-    nodeResolve({
-      extensions: ['.js']
-    }),
+    nodeResolve(),
     replace({
-      'process.env.NODE_ENV': JSON.stringify('development')
+      'process.env.NODE_ENV': JSON.stringify('development'),
     }),
     babel({
-      presets: ['@babel/preset-react']
+      presets: ['@babel/preset-react'],
     }),
     commonjs(),
     serve({
@@ -28,8 +26,8 @@ export default {
       verbose: true,
       contentBase: ['', 'public'],
       host: 'localhost',
-      port: 3000
+      port: 3000,
     }),
-    livereload({ watch: 'dist' })
-  ]
+    livereload({ watch: 'dist' }),
+  ],
 }
